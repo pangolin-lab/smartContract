@@ -88,6 +88,10 @@ contract SimpleProtonManager is owned{
         return true;
     }
     
+    function basicBalance(address target)public view returns(uint, uint){
+        return (target.balance, AddressesCounter[target]);
+    }
+    
     function search(address ethAddr) public view returns(bytes32[]memory){
         return AddressesUnderMyAccount[ethAddr];
     }
