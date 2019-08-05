@@ -2,32 +2,124 @@ package main
 
 import (
 	"fmt"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/ethclient"
-	"github.com/proton-lab/smartContract"
+	"github.com/btcsuite/btcutil/base58"
+	"github.com/ribencong/go-youPipe/account"
+	"github.com/ribencong/go-youPipe/service"
+	"github.com/spf13/cobra"
+	"os"
+	"strings"
+	"time"
 )
 
-var RopstenKey = `{"address":"12ab78538d47121f4c0af38c602e35f703e2363a","crypto":{"cipher":"aes-128-ctr","ciphertext":"b96c5da525d4cd044b60bb6ee0ea7b7896da260f0833833fa5093c4a551dd916","cipherparams":{"iv":"a879d558254511a063293ed867449356"},"kdf":"scrypt","kdfparams":{"dklen":32,"n":262144,"p":1,"r":8,"salt":"cecc744962c2c6af044ba412b4f14de18ae92ef1561dead2c8a68f70d9970796"},"mac":"8a345ac4b9b11c3e6fc6f47ab2da509f9a74c28d0df4d2c77704cc1a4f79f541"},"id":"e22d11c2-96df-45e2-b132-905f9d8e821f","version":3}`
+var rootCmd = &cobra.Command{
+	Use: "YPManager",
+
+	Short: "YPManager -p [password] -u [address] -s [2006-02-21] -d 14",
+
+	Long: `""`,
+
+	Run: mainRun,
+
+	//Args:  cobra.MinimumNArgs(2),
+}
+
+var bootCmd = &cobra.Command{
+	Use: "boot",
+
+	Short: "YPManager boot -s [id@ip, id@ip......]",
+
+	Long: `"YPManager boot -s [id@ip, id@ip......]"`,
+
+	Run: bootStrapServers,
+
+	//Args:  cobra.MinimumNArgs(2),
+}
+
+var param struct {
+	password   string
+	address    string
+	interval   int
+	startDay   string
+	kingKey    string
+	cipherText string
+}
 
 func main() {
-	conn, err := ethclient.Dial("https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3")
-	if err != nil {
+
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
+
+func init() {
+	rootCmd.AddCommand(bootCmd)
+
+	rootCmd.Flags().StringVarP(&param.password, "password",
+		"p", "", "Thanos's finger")
+
+	rootCmd.Flags().StringVarP(&param.address, "address",
+		"u", "", "User's address")
+
+	rootCmd.Flags().StringVarP(&param.startDay, "startDay",
+		"s", "", "License start day")
+
+	rootCmd.Flags().IntVarP(&param.interval, "duration", "d", 0,
+		"license duration in days")
+
+	bootCmd.Flags().StringVarP(&bootServers, "server",
+		"s", "", "bootstrap server list")
+
+	bootCmd.Flags().StringVarP(&bootID, "decode",
+		"d", "", "decode node id to server id@ip")
+}
+
+var bootServers = ""
+var bootID = ""
+
+func mainRun(_ *cobra.Command, _ []string) {
+
+	thanosFinger := OpenThanosFinger(param.password)
+
+	if !account.CheckID(param.address) {
+		panic("user's address is invalid")
+	}
+
+	start := time.Now().In(time.UTC)
+	if len(param.startDay) != 0 {
+		s, err := time.Parse(SysTimeFormat, param.startDay)
+		if err != nil {
+			panic(err)
+		}
+		if s.Before(start) {
+			panic("start time is earlier than now.")
+		}
+		start = s
+	}
+
+	if param.interval <= 0 {
+		panic("invalid duration no in days")
+	}
+
+	l := thanosFinger.Snap(param.address, start, param.interval)
+	fmt.Println(l)
+	if _, err := service.ParseLicense(l); err != nil {
 		panic(err)
 	}
-	//auth, err := bind.NewTransactor(strings.NewReader(RopstenKey), os.Args[1])
-	//if err != nil {
-	//	panic(err)
-	//}
-	manager, err := service.NewSimpleProtonManager(common.HexToAddress("0x7fBA95e059D574A6B7001B1CA9bF03FD08E47F37"), conn)
+}
 
-	//bub := [32]byte{0x01, 0x02, 0x03}
-	//bub[0] = 0x0a
-	//bub[1] = 0x0b
-	//
-	addr, err := manager.Owner(nil)
-	if err != nil {
-		panic(err)
+func bootStrapServers(_ *cobra.Command, _ []string) {
+
+	if len(bootServers) != 0 {
+		nodeIds := strings.Split(bootServers, ",")
+
+		for _, id := range nodeIds {
+			fmt.Println(base58.Encode([]byte(id)))
+		}
 	}
 
-	fmt.Println(addr.Hex())
+	if len(bootID) != 0 {
+		fmt.Println(string(base58.Decode(bootID)))
+	}
+
 }
