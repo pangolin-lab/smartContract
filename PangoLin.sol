@@ -1,4 +1,4 @@
-pragma solidity >=0.4.21;
+pragma solidity >=0.4.24;
 
 import "./ERC20.sol";
 
@@ -7,7 +7,7 @@ contract PangolinToken is ERC20{
     string  public constant  name = "Pangolin Network Token";
     string  public constant  symbol = "LIN";
     uint8   public constant  decimals = 18;
-    uint256 public constant INITIAL_SUPPLY = 420e8 * (10 ** uint256(decimals));
+    uint256 public constant INITIAL_SUPPLY = 4.2e8 * (10 ** uint256(decimals));
 
     constructor() public{
         _mint(msg.sender, INITIAL_SUPPLY);
