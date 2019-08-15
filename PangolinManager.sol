@@ -12,7 +12,7 @@ interface PPNTToken {
 
 contract PangolinManager is owned{
     using SafeMath for uint256;
-    uint constant public TokenNoForOneUser = 10000;
+    uint constant public TokenNoForOneUser = 100;
     uint TokenNoPerUser;
     PPNTToken public token;
     
