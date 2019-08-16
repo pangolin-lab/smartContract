@@ -9,7 +9,6 @@ contract LinShop is owned{
     
     event TokensPurchased(
         address indexed purchaser, 
-        address indexed beneficiary,
         uint256 value,
         uint256 amount
     );
@@ -29,25 +28,14 @@ contract LinShop is owned{
     }
     
     function () payable external{
-        // buyTokens(msg.sender);
         uint256 weiAmount = msg.value;
-        require(weiAmount > 0);
-        
-        uint256 tokenNo = weiAmount.mul(_rate); 
-        require(remainingTokens() >= tokenNo);
-    }
-    
-    function buyTokens(address beneficiary) public payable {
-        uint256 weiAmount = msg.value;
-        require(weiAmount > 0);
-        require(beneficiary != address(0));
+        require(weiAmount > 0); 
         
         uint256 tokenNo = weiAmount.mul(_rate); 
         require(remainingTokens() >= tokenNo);
         
-        _token.transferFrom(_adminWallet, beneficiary, tokenNo); 
-        emit TokensPurchased( msg.sender, beneficiary, weiAmount, tokenNo);
-        _adminWallet.transfer(weiAmount);
+        _token.transferFrom(_adminWallet, msg.sender, tokenNo); 
+        emit TokensPurchased(msg.sender, weiAmount, tokenNo); 
     }
     
     function token() public view returns(ERC20) {
