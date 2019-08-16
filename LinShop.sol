@@ -9,26 +9,45 @@ contract LinShop is owned{
     
     event TokensPurchased(
         address indexed purchaser, 
+        address indexed beneficiary,
         uint256 value,
         uint256 amount
     );
     
-    address private _adminWallet;
+    address payable private  _adminWallet;
     uint256 private _rate;
     ERC20 private _token;
     
-    constructor(uint256 rate, address wallet, ERC20 token) public{
+    constructor(uint256 rate, address payable wallet, ERC20 token) public{
         require(rate > 0);
         require(wallet != address(0));
-        require(token != address(0));
+        require(address(token) != address(0));
     
         _rate = rate;
         _adminWallet = wallet;
         _token = token;
     }
     
-    function () external payable {
-        buyTokens();
+    function () payable external{
+        // buyTokens(msg.sender);
+        uint256 weiAmount = msg.value;
+        require(weiAmount > 0);
+        
+        uint256 tokenNo = weiAmount.mul(_rate); 
+        require(remainingTokens() >= tokenNo);
+    }
+    
+    function buyTokens(address beneficiary) public payable {
+        uint256 weiAmount = msg.value;
+        require(weiAmount > 0);
+        require(beneficiary != address(0));
+        
+        uint256 tokenNo = weiAmount.mul(_rate); 
+        require(remainingTokens() >= tokenNo);
+        
+        _token.transferFrom(_adminWallet, beneficiary, tokenNo); 
+        emit TokensPurchased( msg.sender, beneficiary, weiAmount, tokenNo);
+        _adminWallet.transfer(weiAmount);
     }
     
     function token() public view returns(ERC20) {
@@ -41,24 +60,17 @@ contract LinShop is owned{
     
     function rate() public view returns(uint256) {
         return _rate;
-    } 
-    
-    function remainingTokens() public view returns (uint256) {
-        return _token.allowance(_adminWallet, this);
     }
     
-    function buyTokens() public payable {
-        
-        uint256 weiAmount = msg.value;
-        require(weiAmount > 0);
-        
-        uint256 tokenNo = weiAmount.mul(_rate); 
-        require(remainingTokens() >= tokenNo);
-        
-        _token.transferFrom(_adminWallet, msg.sender, tokenNo);
-        
-        emit TokensPurchased( msg.sender, weiAmount, tokenNo);
-        
-        _adminWallet.transfer(weiAmount);
+    function changeRate(uint256 newRate) public onlyOwner{
+        _rate = newRate;
+    }
+    
+    function remainingTokens() public view returns (uint256) {
+        return _token.allowance(_adminWallet, address(this));
+    }
+    
+    function withDrawIncome() public onlyOwner{
+        _adminWallet.transfer(address(this).balance);
     }
 }
