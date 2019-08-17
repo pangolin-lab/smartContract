@@ -36,6 +36,7 @@ contract LinShop is owned{
         
         _token.transferFrom(_adminWallet, msg.sender, tokenNo); 
         emit TokensPurchased(msg.sender, weiAmount, tokenNo); 
+        _adminWallet.transfer(weiAmount);
     }
     
     function token() public view returns(ERC20) {
@@ -56,9 +57,5 @@ contract LinShop is owned{
     
     function remainingTokens() public view returns (uint256) {
         return _token.allowance(_adminWallet, address(this));
-    }
-    
-    function withDrawIncome() public onlyOwner{
-        _adminWallet.transfer(address(this).balance);
     }
 }
