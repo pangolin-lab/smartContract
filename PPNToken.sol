@@ -19,21 +19,4 @@ contract PPNToken is ERC20{
     function getDeccimal() public pure returns (uint) {
         return 10 ** uint256(decimals);
     }
-
-    function getAllowanceToken(address to) public view returns (uint){
-        return _freezeToContract[to];
-    }
-
-    function transferFrom(address from, address to, uint256 value ) public returns (bool) {
-
-        // require(value <= balanceOf(from));
-        // require(value <= _allowed[from][msg.sender]);
-        // require(to != address(0));
-
-        // _balances[from] = _balances[from].sub(value);
-        // _balances[to] = _balances[to].add(value);
-        // _allowed[from][msg.sender] = _allowed[from][msg.sender].sub(value);
-        // emit Transfer(from, to, value);
-        return true;
-    }
 }
