@@ -4,23 +4,19 @@ import "./owned.sol";
 import "./safemath.sol";
 import "./PPNToken.sol";
 
-contract MinerPoolManager is owned{ 
-    
+contract MinerPoolManager is owned{
     using SafeMath for uint256;
-    
     struct MinerPool{
        string desc;
        address ethAddress;
        uint guaranteedToken;
     }
-
     struct TopItem{
         address poolEthAddr;
         uint guaranteedNo;
     }
-    
+
     uint public MinPoolCostInToken = 102400000;
-    
     PPNToken public token;
     uint public TokenDecimals;
     mapping(address=>MinerPool) AllMinerPools;
@@ -32,7 +28,6 @@ contract MinerPoolManager is owned{
     }
     
     function RegAsMinerPool(uint guaranteeAmount, string memory desc) public {
-
         require(guaranteeAmount > MinPoolCostInToken);
 
         uint tokenNoWithDecimal = guaranteeAmount.mul(TokenDecimals);
@@ -57,9 +52,7 @@ contract MinerPoolManager is owned{
     }
 
     function AddGuarantToken(uint tokenNo) public {
-
         uint noWithDecimal = tokenNo.mul(TokenDecimals);
-
         require(token.balanceOf(msg.sender) > noWithDecimal);
         MinerPool storage pool = AllMinerPools[msg.sender];
 

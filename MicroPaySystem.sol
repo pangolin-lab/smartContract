@@ -11,7 +11,6 @@ contract MicroPaySystem is owned{
         address ethAddress;
         uint refundAveragePrice;
     }
-    
 
     struct PayChannelItem{
         bytes32 protonAddr;
