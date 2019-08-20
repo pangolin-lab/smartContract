@@ -6,35 +6,31 @@ import "./PPNToken.sol";
 
 contract MicroPaySystem is owned{
     
-    struct TopItem{
-        address poolEthAddr;
-        uint guaranteedNo;
-    }
-    
     struct MinerPool{
         address mainAddr;
         bytes32 viceAddr;
+        uint guaranteedNo;
     }
     
-     
-    struct Miner{
-       bytes32 protonAddress;
-       address ethAddress;
+    struct Channel{
+        uint remindTokens;
+        uint remindPackets;
     }
     
     using SafeMath for uint256; 
     
-    uint public BandWithPerToken = 4;  //4M bytes/ppnt;
-    uint public MinUserCostInToken = 100;
-    uint public MinPoolCostInToken = 102400000;
-    uint public MinMinerCostInToken = 1024000;
-    
+    uint public PacketPrice = 16000000;  //(16M Bytes)/ppnt /-->/1M = 1000 KB = 1,000,000 Bytes;
+    uint public MinUserCostInToken;
+    uint public MinPoolCostInToken;
+    uint public MinMinerCostInToken;
+    uint public TokenDecimals;  
     PPNToken public token;
-    uint public  TokenDecimals; 
-    mapping(address=>MinerPool) MinerPools;
+    
+    mapping(address=>MinerPool) public MinerPools;
+    mapping(bytes32=>mapping(address=>Channel)) public MicroPaymentChannels;
     
     function ChangeBandWithPrice(uint newPrice) public onlyOwner{
-        BandWithPerToken = newPrice;
+        PacketPrice = newPrice;
     } 
 
     function ChangeMinUserCost(uint newCost) public onlyOwner{
@@ -52,40 +48,47 @@ contract MicroPaySystem is owned{
     constructor(address ta) public{
         token = PPNToken(ta);
         TokenDecimals = token.getDeccimal();
+        
+        MinUserCostInToken = 100 * TokenDecimals;
+        MinPoolCostInToken = 102400000 * TokenDecimals;
+        MinMinerCostInToken = 1024000 * TokenDecimals;
     }
 
     /********************************************************************************
     *                           User
     *********************************************************************************/
-    function BuyPacket(uint8 typ, bytes32 targetAddress, uint tokenAmount, address poolEthAddr) public{
-        require(tokenAmount > MinUserCostInToken);
-        require(token.balanceOf(msg.sender) > tokenAmount);
+    function BuyPacket(bytes32 va, uint tokenNo, address poolAddr) public{
         
-        MinerPool memory pool = MinerPools[poolEthAddr];
+        require(tokenNo > MinUserCostInToken);
+        require(token.balanceOf(msg.sender) > tokenNo);
+        
+        MinerPool memory pool = MinerPools[poolAddr];
         require(pool.mainAddr != address(0));
         
-
-        // PayChannelItem storage item =  NormalPayChannels[targetAddress];
-
-        // if (item.buyerEthAddr == address(0)){
-        //     _initNewMicroPayChannel(targetAddress, tokenAmount, pool, item);
-        // }else{
-        //     _rechargeToPayChannel(targetAddress, tokenAmount, pool, item);
-        // }
+        token.transfer(address(this), tokenNo); 
+        uint newPackets = tokenNo.div(TokenDecimals).mul(PacketPrice); 
+        
+        Channel storage ch = MicroPaymentChannels[va][pool.mainAddr];
+        ch.remindPackets += newPackets;
+        ch.remindTokens += tokenNo;
     }
     
     
     /********************************************************************************
     *                           Pool
     *********************************************************************************/
-    function RegAsMinerPool(uint guaranteeAmount, string memory desc) public {
-        require(guaranteeAmount > MinPoolCostInToken);
-
-        uint tokenNoWithDecimal = guaranteeAmount.mul(TokenDecimals);
-        require(token.balanceOf(msg.sender) > tokenNoWithDecimal); 
-    }
-
-    function _reSortTopList(address poolAddr, uint tokenNo) internal {
+    function RegAsMinerPool(uint gno, bytes32 va) public {
+        require(gno > MinPoolCostInToken); 
+        require(token.balanceOf(msg.sender) > gno); 
+        
+         MinerPool storage pool = MinerPools[msg.sender];
+         require(pool.mainAddr == address(0));
+         
+         token.transfer(address(this), gno);
+         
+         pool.mainAddr = msg.sender;
+         pool.guaranteedNo = gno;
+         pool.viceAddr = va;
     }
     
     /********************************************************************************

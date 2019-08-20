@@ -14,38 +14,39 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "PacketPrice",
+		"outputs": [
 			{
-				"name": "typ",
-				"type": "uint8"
-			},
-			{
-				"name": "targetAddress",
-				"type": "bytes32"
-			},
-			{
-				"name": "tokenAmount",
+				"name": "",
 				"type": "uint256"
-			},
-			{
-				"name": "poolEthAddr",
-				"type": "address"
 			}
 		],
-		"name": "BuyPacket",
-		"outputs": [],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "SettlePriceForBuyer",
-		"outputs": [
+		"inputs": [
 			{
 				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "MinerPools",
+		"outputs": [
+			{
+				"name": "mainAddr",
+				"type": "address"
+			},
+			{
+				"name": "viceAddr",
+				"type": "bytes32"
+			},
+			{
+				"name": "guaranteedNo",
 				"type": "uint256"
 			}
 		],
@@ -68,6 +69,42 @@
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "newPrice",
+				"type": "uint256"
+			}
+		],
+		"name": "ChangeBandWithPrice",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "va",
+				"type": "bytes32"
+			},
+			{
+				"name": "tokenNo",
+				"type": "uint256"
+			},
+			{
+				"name": "poolAddr",
+				"type": "address"
+			}
+		],
+		"name": "BuyPacket",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "MinMinerCostInToken",
@@ -82,14 +119,45 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [
 			{
-				"name": "newPrice",
+				"name": "",
+				"type": "bytes32"
+			},
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "MicroPaymentChannels",
+		"outputs": [
+			{
+				"name": "remindTokens",
+				"type": "uint256"
+			},
+			{
+				"name": "remindPackets",
 				"type": "uint256"
 			}
 		],
-		"name": "ChangePriceForBuyer",
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "gno",
+				"type": "uint256"
+			},
+			{
+				"name": "va",
+				"type": "bytes32"
+			}
+		],
+		"name": "RegAsMinerPool",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -113,6 +181,34 @@
 		"constant": false,
 		"inputs": [
 			{
+				"name": "newCost",
+				"type": "uint256"
+			}
+		],
+		"name": "ChangeMinPoolCost",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "newCost",
+				"type": "uint256"
+			}
+		],
+		"name": "ChangeMinUserCost",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
 				"name": "newOwner",
 				"type": "address"
 			}
@@ -121,6 +217,20 @@
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "MinPoolCostInToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -135,6 +245,20 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "newCost",
+				"type": "uint256"
+			}
+		],
+		"name": "ChangeMinMinerCost",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
