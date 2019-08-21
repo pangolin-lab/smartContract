@@ -28,6 +28,20 @@
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "daysAfter",
+				"type": "uint256"
+			}
+		],
+		"name": "ChangeDuration",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -47,6 +61,20 @@
 			},
 			{
 				"name": "guaranteedNo",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "DurationInDays",
+		"outputs": [
+			{
+				"name": "",
 				"type": "uint256"
 			}
 		],
@@ -133,11 +161,19 @@
 		"name": "MicroPaymentChannels",
 		"outputs": [
 			{
+				"name": "sigAddr",
+				"type": "address"
+			},
+			{
 				"name": "remindTokens",
 				"type": "uint256"
 			},
 			{
 				"name": "remindPackets",
+				"type": "uint256"
+			},
+			{
+				"name": "expiration",
 				"type": "uint256"
 			}
 		],

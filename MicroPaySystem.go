@@ -28,7 +28,7 @@ var (
 )
 
 // MicroPaySystemABI is the input ABI used to generate the binding from.
-const MicroPaySystemABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"TokenDecimals\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"PacketPrice\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"MinerPools\",\"outputs\":[{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"viceAddr\",\"type\":\"bytes32\"},{\"name\":\"guaranteedNo\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinUserCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newPrice\",\"type\":\"uint256\"}],\"name\":\"ChangeBandWithPrice\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"va\",\"type\":\"bytes32\"},{\"name\":\"tokenNo\",\"type\":\"uint256\"},{\"name\":\"poolAddr\",\"type\":\"address\"}],\"name\":\"BuyPacket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinMinerCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"},{\"name\":\"\",\"type\":\"address\"}],\"name\":\"MicroPaymentChannels\",\"outputs\":[{\"name\":\"remindTokens\",\"type\":\"uint256\"},{\"name\":\"remindPackets\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"gno\",\"type\":\"uint256\"},{\"name\":\"va\",\"type\":\"bytes32\"}],\"name\":\"RegAsMinerPool\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinPoolCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinUserCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinPoolCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinMinerCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"ta\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]"
+const MicroPaySystemABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"TokenDecimals\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"PacketPrice\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"daysAfter\",\"type\":\"uint256\"}],\"name\":\"ChangeDuration\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"MinerPools\",\"outputs\":[{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"viceAddr\",\"type\":\"bytes32\"},{\"name\":\"guaranteedNo\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"DurationInDays\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinUserCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newPrice\",\"type\":\"uint256\"}],\"name\":\"ChangeBandWithPrice\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"va\",\"type\":\"bytes32\"},{\"name\":\"tokenNo\",\"type\":\"uint256\"},{\"name\":\"poolAddr\",\"type\":\"address\"}],\"name\":\"BuyPacket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinMinerCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"},{\"name\":\"\",\"type\":\"address\"}],\"name\":\"MicroPaymentChannels\",\"outputs\":[{\"name\":\"sigAddr\",\"type\":\"address\"},{\"name\":\"remindTokens\",\"type\":\"uint256\"},{\"name\":\"remindPackets\",\"type\":\"uint256\"},{\"name\":\"expiration\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"gno\",\"type\":\"uint256\"},{\"name\":\"va\",\"type\":\"bytes32\"}],\"name\":\"RegAsMinerPool\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinPoolCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinUserCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinPoolCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinMinerCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"ta\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]"
 
 // MicroPaySystem is an auto generated Go binding around an Ethereum contract.
 type MicroPaySystem struct {
@@ -172,16 +172,46 @@ func (_MicroPaySystem *MicroPaySystemTransactorRaw) Transact(opts *bind.Transact
 	return _MicroPaySystem.Contract.contract.Transact(opts, method, params...)
 }
 
+// DurationInDays is a free data retrieval call binding the contract method 0x37f416e3.
+//
+// Solidity: function DurationInDays() constant returns(uint256)
+func (_MicroPaySystem *MicroPaySystemCaller) DurationInDays(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _MicroPaySystem.contract.Call(opts, out, "DurationInDays")
+	return *ret0, err
+}
+
+// DurationInDays is a free data retrieval call binding the contract method 0x37f416e3.
+//
+// Solidity: function DurationInDays() constant returns(uint256)
+func (_MicroPaySystem *MicroPaySystemSession) DurationInDays() (*big.Int, error) {
+	return _MicroPaySystem.Contract.DurationInDays(&_MicroPaySystem.CallOpts)
+}
+
+// DurationInDays is a free data retrieval call binding the contract method 0x37f416e3.
+//
+// Solidity: function DurationInDays() constant returns(uint256)
+func (_MicroPaySystem *MicroPaySystemCallerSession) DurationInDays() (*big.Int, error) {
+	return _MicroPaySystem.Contract.DurationInDays(&_MicroPaySystem.CallOpts)
+}
+
 // MicroPaymentChannels is a free data retrieval call binding the contract method 0x890d5b9e.
 //
-// Solidity: function MicroPaymentChannels(bytes32 , address ) constant returns(uint256 remindTokens, uint256 remindPackets)
+// Solidity: function MicroPaymentChannels(bytes32 , address ) constant returns(address sigAddr, uint256 remindTokens, uint256 remindPackets, uint256 expiration)
 func (_MicroPaySystem *MicroPaySystemCaller) MicroPaymentChannels(opts *bind.CallOpts, arg0 [32]byte, arg1 common.Address) (struct {
+	SigAddr       common.Address
 	RemindTokens  *big.Int
 	RemindPackets *big.Int
+	Expiration    *big.Int
 }, error) {
 	ret := new(struct {
+		SigAddr       common.Address
 		RemindTokens  *big.Int
 		RemindPackets *big.Int
+		Expiration    *big.Int
 	})
 	out := ret
 	err := _MicroPaySystem.contract.Call(opts, out, "MicroPaymentChannels", arg0, arg1)
@@ -190,20 +220,24 @@ func (_MicroPaySystem *MicroPaySystemCaller) MicroPaymentChannels(opts *bind.Cal
 
 // MicroPaymentChannels is a free data retrieval call binding the contract method 0x890d5b9e.
 //
-// Solidity: function MicroPaymentChannels(bytes32 , address ) constant returns(uint256 remindTokens, uint256 remindPackets)
+// Solidity: function MicroPaymentChannels(bytes32 , address ) constant returns(address sigAddr, uint256 remindTokens, uint256 remindPackets, uint256 expiration)
 func (_MicroPaySystem *MicroPaySystemSession) MicroPaymentChannels(arg0 [32]byte, arg1 common.Address) (struct {
+	SigAddr       common.Address
 	RemindTokens  *big.Int
 	RemindPackets *big.Int
+	Expiration    *big.Int
 }, error) {
 	return _MicroPaySystem.Contract.MicroPaymentChannels(&_MicroPaySystem.CallOpts, arg0, arg1)
 }
 
 // MicroPaymentChannels is a free data retrieval call binding the contract method 0x890d5b9e.
 //
-// Solidity: function MicroPaymentChannels(bytes32 , address ) constant returns(uint256 remindTokens, uint256 remindPackets)
+// Solidity: function MicroPaymentChannels(bytes32 , address ) constant returns(address sigAddr, uint256 remindTokens, uint256 remindPackets, uint256 expiration)
 func (_MicroPaySystem *MicroPaySystemCallerSession) MicroPaymentChannels(arg0 [32]byte, arg1 common.Address) (struct {
+	SigAddr       common.Address
 	RemindTokens  *big.Int
 	RemindPackets *big.Int
+	Expiration    *big.Int
 }, error) {
 	return _MicroPaySystem.Contract.MicroPaymentChannels(&_MicroPaySystem.CallOpts, arg0, arg1)
 }
@@ -470,6 +504,27 @@ func (_MicroPaySystem *MicroPaySystemSession) ChangeBandWithPrice(newPrice *big.
 // Solidity: function ChangeBandWithPrice(uint256 newPrice) returns()
 func (_MicroPaySystem *MicroPaySystemTransactorSession) ChangeBandWithPrice(newPrice *big.Int) (*types.Transaction, error) {
 	return _MicroPaySystem.Contract.ChangeBandWithPrice(&_MicroPaySystem.TransactOpts, newPrice)
+}
+
+// ChangeDuration is a paid mutator transaction binding the contract method 0x1deacdd1.
+//
+// Solidity: function ChangeDuration(uint256 daysAfter) returns()
+func (_MicroPaySystem *MicroPaySystemTransactor) ChangeDuration(opts *bind.TransactOpts, daysAfter *big.Int) (*types.Transaction, error) {
+	return _MicroPaySystem.contract.Transact(opts, "ChangeDuration", daysAfter)
+}
+
+// ChangeDuration is a paid mutator transaction binding the contract method 0x1deacdd1.
+//
+// Solidity: function ChangeDuration(uint256 daysAfter) returns()
+func (_MicroPaySystem *MicroPaySystemSession) ChangeDuration(daysAfter *big.Int) (*types.Transaction, error) {
+	return _MicroPaySystem.Contract.ChangeDuration(&_MicroPaySystem.TransactOpts, daysAfter)
+}
+
+// ChangeDuration is a paid mutator transaction binding the contract method 0x1deacdd1.
+//
+// Solidity: function ChangeDuration(uint256 daysAfter) returns()
+func (_MicroPaySystem *MicroPaySystemTransactorSession) ChangeDuration(daysAfter *big.Int) (*types.Transaction, error) {
+	return _MicroPaySystem.Contract.ChangeDuration(&_MicroPaySystem.TransactOpts, daysAfter)
 }
 
 // ChangeMinMinerCost is a paid mutator transaction binding the contract method 0xff13c103.

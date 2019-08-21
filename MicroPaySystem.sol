@@ -13,8 +13,10 @@ contract MicroPaySystem is owned{
     }
     
     struct Channel{
+        address sigAddr;
         uint remindTokens;
         uint remindPackets;
+        uint256 expiration;
     }
     
     using SafeMath for uint256; 
@@ -24,6 +26,8 @@ contract MicroPaySystem is owned{
     uint public MinPoolCostInToken;
     uint public MinMinerCostInToken;
     uint public TokenDecimals;  
+    uint public DurationInDays = 30 days;
+    
     PPNToken public token;
     
     mapping(address=>MinerPool) public MinerPools;
@@ -43,6 +47,10 @@ contract MicroPaySystem is owned{
     
     function ChangeMinMinerCost(uint newCost) public onlyOwner{
         MinMinerCostInToken = newCost;
+    }
+    
+    function ChangeDuration(uint daysAfter) public onlyOwner{
+        DurationInDays = daysAfter * 1 days;
     }
     
     constructor(address ta) public{
@@ -71,6 +79,7 @@ contract MicroPaySystem is owned{
         Channel storage ch = MicroPaymentChannels[va][pool.mainAddr];
         ch.remindPackets += newPackets;
         ch.remindTokens += tokenNo;
+        ch.expiration = now + DurationInDays;
     }
     
     
