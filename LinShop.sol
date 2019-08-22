@@ -16,7 +16,7 @@ contract LinShop is owned{
     address payable private  _adminWallet;
     uint256 constant private _rateLevel1 = 300;
     uint256 constant private _rateLevel2 = 240;
-    uint256 private level1 = 2.1e7 * (10 ** 18);
+    uint256 public level1;
     uint256 public hasRaised = 0;
     PangolinToken private _token;
     
