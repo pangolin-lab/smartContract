@@ -2,28 +2,21 @@ pragma solidity >=0.4.24;
 
 import "./owned.sol";
 import "./safemath.sol";
-
-
-interface PPNTToken {
-    function balanceOf(address account) external view returns (uint);
-    function getDeccimal() external pure returns (uint);
-}
-
+import "./PangolinToken.sol";
 
 contract PangolinManager is owned{
     using SafeMath for uint256;
     uint constant public TokenNoForOneUser = 100;
     uint TokenNoPerUser;
-    PPNTToken public token;
-    
+    PangolinToken public token;
+
     mapping(bytes32=>address) public PangolinUserRecord;
     mapping(address=>uint) public EtherCounter;
-    
+
     constructor (address tokenAddr) public{
-        token = PPNTToken(tokenAddr);
+        token = PangolinToken(tokenAddr);
         TokenNoPerUser = token.getDeccimal().mul(TokenNoForOneUser);
     }
-    
     
     function unbind(bytes32 addr) public{
         address userAddr = PangolinUserRecord[addr];

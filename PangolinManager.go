@@ -28,7 +28,7 @@ var (
 )
 
 // PangolinManagerABI is the input ABI used to generate the binding from.
-const PangolinManagerABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"changeServicePrice\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"addr\",\"type\":\"bytes32\"}],\"name\":\"check\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"addr\",\"type\":\"bytes32\"}],\"name\":\"unbind\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"addr\",\"type\":\"bytes32\"}],\"name\":\"bind\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"EtherCounter\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"PangolinUserRecord\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddr\",\"type\":\"address\"}],\"name\":\"bindingInfo\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"TokenNoPerUser\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"tokenAddr\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]"
+const PangolinManagerABI = "[{\"constant\":false,\"inputs\":[{\"name\":\"price\",\"type\":\"uint256\"}],\"name\":\"changeServicePrice\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"addr\",\"type\":\"bytes32\"}],\"name\":\"check\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"TokenNoForOneUser\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"addr\",\"type\":\"bytes32\"}],\"name\":\"unbind\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"addr\",\"type\":\"bytes32\"}],\"name\":\"bind\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"EtherCounter\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"PangolinUserRecord\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddr\",\"type\":\"address\"}],\"name\":\"bindingInfo\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"tokenAddr\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]"
 
 // PangolinManager is an auto generated Go binding around an Ethereum contract.
 type PangolinManager struct {
@@ -224,30 +224,30 @@ func (_PangolinManager *PangolinManagerCallerSession) PangolinUserRecord(arg0 [3
 	return _PangolinManager.Contract.PangolinUserRecord(&_PangolinManager.CallOpts, arg0)
 }
 
-// TokenNoPerUser is a free data retrieval call binding the contract method 0xa86be5a9.
+// TokenNoForOneUser is a free data retrieval call binding the contract method 0x63692e12.
 //
-// Solidity: function TokenNoPerUser() constant returns(uint256)
-func (_PangolinManager *PangolinManagerCaller) TokenNoPerUser(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function TokenNoForOneUser() constant returns(uint256)
+func (_PangolinManager *PangolinManagerCaller) TokenNoForOneUser(opts *bind.CallOpts) (*big.Int, error) {
 	var (
 		ret0 = new(*big.Int)
 	)
 	out := ret0
-	err := _PangolinManager.contract.Call(opts, out, "TokenNoPerUser")
+	err := _PangolinManager.contract.Call(opts, out, "TokenNoForOneUser")
 	return *ret0, err
 }
 
-// TokenNoPerUser is a free data retrieval call binding the contract method 0xa86be5a9.
+// TokenNoForOneUser is a free data retrieval call binding the contract method 0x63692e12.
 //
-// Solidity: function TokenNoPerUser() constant returns(uint256)
-func (_PangolinManager *PangolinManagerSession) TokenNoPerUser() (*big.Int, error) {
-	return _PangolinManager.Contract.TokenNoPerUser(&_PangolinManager.CallOpts)
+// Solidity: function TokenNoForOneUser() constant returns(uint256)
+func (_PangolinManager *PangolinManagerSession) TokenNoForOneUser() (*big.Int, error) {
+	return _PangolinManager.Contract.TokenNoForOneUser(&_PangolinManager.CallOpts)
 }
 
-// TokenNoPerUser is a free data retrieval call binding the contract method 0xa86be5a9.
+// TokenNoForOneUser is a free data retrieval call binding the contract method 0x63692e12.
 //
-// Solidity: function TokenNoPerUser() constant returns(uint256)
-func (_PangolinManager *PangolinManagerCallerSession) TokenNoPerUser() (*big.Int, error) {
-	return _PangolinManager.Contract.TokenNoPerUser(&_PangolinManager.CallOpts)
+// Solidity: function TokenNoForOneUser() constant returns(uint256)
+func (_PangolinManager *PangolinManagerCallerSession) TokenNoForOneUser() (*big.Int, error) {
+	return _PangolinManager.Contract.TokenNoForOneUser(&_PangolinManager.CallOpts)
 }
 
 // BindingInfo is a free data retrieval call binding the contract method 0x965be58d.

@@ -1,7 +1,7 @@
 pragma solidity >=0.4.24;
 
 import "./owned.sol";
-import "./ERC20.sol";
+import "./PangolinToken.sol";
 
 
 contract LinShop is owned{ 
@@ -14,29 +14,36 @@ contract LinShop is owned{
     );
     
     address payable private  _adminWallet;
-    uint256 private _rate;
-    ERC20 private _token;
+    uint256 constant private _rateLevel1 = 300;
+    uint256 constant private _rateLevel2 = 240;
+    uint256 private level1 = 2.1e7 * (10 ** 18);
+    uint256 public hasRaised = 0;
+    PangolinToken private _token;
     
-    constructor(uint256 rate, address payable wallet, ERC20 token) public{
-        require(rate > 0);
+    constructor(address payable wallet, PangolinToken token) public{ 
         require(wallet != address(0));
-        require(address(token) != address(0));
-    
-        _rate = rate;
+        require(address(token) != address(0));  
         _adminWallet = wallet;
         _token = token;
+        level1 = 2.1e7 * _token.getDeccimal();
     }
     
     function () payable external{
         uint256 weiAmount = msg.value;
         require(weiAmount > 0); 
         
-        uint256 tokenNo = weiAmount.mul(_rate); 
+        uint256 tokenNo = 0;
+        if (hasRaised < level1){
+            tokenNo = weiAmount.mul(_rateLevel1);
+        }else{
+            tokenNo = weiAmount.mul(_rateLevel2);
+        } 
         require(remainingTokens() >= tokenNo);
         
         _token.transferFrom(_adminWallet, msg.sender, tokenNo); 
         emit TokensPurchased(msg.sender, weiAmount, tokenNo); 
         _adminWallet.transfer(weiAmount);
+        hasRaised += tokenNo;
     }
     
     function token() public view returns(ERC20) {
@@ -47,12 +54,8 @@ contract LinShop is owned{
         return _adminWallet;
     }
     
-    function rate() public view returns(uint256) {
-        return _rate;
-    }
-    
-    function changeRate(uint256 newRate) public onlyOwner{
-        _rate = newRate;
+    function rate() public pure returns(uint256, uint256) {
+        return (_rateLevel1, _rateLevel2);
     }
     
     function remainingTokens() public view returns (uint256) {
