@@ -14,9 +14,9 @@ contract LinShop is owned{
     );
     
     address payable private  _adminWallet;
-    uint256 constant private _rateLevel1 = 300;
-    uint256 constant private _rateLevel2 = 240;
-    uint256 public level1;
+    uint256 constant public _rateLevel1 = 300;
+    uint256 public _rateLevel2 = 240;
+    uint256 public TokenNoToSellInLevel1;
     uint256 public hasRaised = 0;
     PangolinToken private _token;
     
@@ -25,7 +25,7 @@ contract LinShop is owned{
         require(address(token) != address(0));  
         _adminWallet = wallet;
         _token = token;
-        level1 = 2.1e7 * _token.getDeccimal();
+        TokenNoToSellInLevel1 = 2.1e7 * _token.getDeccimal();
     }
     
     function () payable external{
@@ -33,7 +33,7 @@ contract LinShop is owned{
         require(weiAmount > 0); 
         
         uint256 tokenNo = 0;
-        if (hasRaised < level1){
+        if (hasRaised < TokenNoToSellInLevel1){
             tokenNo = weiAmount.mul(_rateLevel1);
         }else{
             tokenNo = weiAmount.mul(_rateLevel2);
@@ -46,16 +46,16 @@ contract LinShop is owned{
         hasRaised += tokenNo;
     }
     
+    function SetLevel2Rate(uint newRate) public onlyOwner{
+        _rateLevel2 = newRate;
+    }
+    
     function token() public view returns(ERC20) {
         return _token;
     }
     
     function adminWallet() public view returns(address) {
         return _adminWallet;
-    }
-    
-    function rate() public pure returns(uint256, uint256) {
-        return (_rateLevel1, _rateLevel2);
     }
     
     function remainingTokens() public view returns (uint256) {
