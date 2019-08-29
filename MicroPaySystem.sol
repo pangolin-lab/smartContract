@@ -2,7 +2,7 @@ pragma solidity >=0.4.24;
 
 import "./owned.sol";
 import "./safemath.sol";
-import "./PPNToken.sol"; 
+import "./PangolinToken.sol"; 
 
 contract MicroPaySystem is owned{
     
@@ -28,7 +28,7 @@ contract MicroPaySystem is owned{
     uint public TokenDecimals;  
     uint public DurationInDays = 30 days;
     
-    PPNToken public token;
+    PangolinToken public token;
     
     mapping(address=>MinerPool) public MinerPools;
     mapping(bytes32=>mapping(address=>Channel)) public MicroPaymentChannels;
@@ -54,7 +54,7 @@ contract MicroPaySystem is owned{
     }
     
     constructor(address ta) public{
-        token = PPNToken(ta);
+        token = PangolinToken(ta);
         TokenDecimals = token.getDeccimal();
         
         MinUserCostInToken = 100 * TokenDecimals;
@@ -82,6 +82,9 @@ contract MicroPaySystem is owned{
         ch.expiration = now + DurationInDays;
     }
     
+    function TokenBalance(address userAddress) public view returns (uint, uint){
+        return (token.balanceOf(userAddress), userAddress.balance);
+    }
     
     /********************************************************************************
     *                           Pool
