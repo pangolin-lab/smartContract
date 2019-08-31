@@ -8,8 +8,13 @@ contract MicroPaySystem is owned{
     
     struct MinerPool{
         address mainAddr;
-        bytes32 viceAddr;
+        address payer;
+        bytes32 subAddr;
         uint guaranteedNo;
+        uint ID;
+        uint8 poolType;
+        string shortName;
+        string detailInfos;
     }
     
     struct Channel{
@@ -31,6 +36,8 @@ contract MicroPaySystem is owned{
     PangolinToken public token;
     
     mapping(address=>MinerPool) public MinerPools;
+    address[] public MinerPoolsAddresses;
+    
     mapping(bytes32=>mapping(address=>Channel)) public MicroPaymentChannels;
     
     function ChangeBandWithPrice(uint newPrice) public onlyOwner{
@@ -58,8 +65,8 @@ contract MicroPaySystem is owned{
         TokenDecimals = token.getDeccimal();
         
         MinUserCostInToken = 100 * TokenDecimals;
-        MinPoolCostInToken = 102400000 * TokenDecimals;
-        MinMinerCostInToken = 1024000 * TokenDecimals;
+        MinPoolCostInToken = 51200 * TokenDecimals;
+        MinMinerCostInToken = 512 * TokenDecimals;
     }
 
     /********************************************************************************
@@ -89,19 +96,41 @@ contract MicroPaySystem is owned{
     /********************************************************************************
     *                           Pool
     *********************************************************************************/
-    function RegAsMinerPool(uint gno, bytes32 va) public {
+    function RegAsMinerPool(uint gno, address mainAddr,  bytes32 subAddr, string memory name, string memory desc) public {
         require(gno > MinPoolCostInToken); 
         require(token.balanceOf(msg.sender) > gno); 
         
-         MinerPool storage pool = MinerPools[msg.sender];
+         MinerPool storage pool = MinerPools[mainAddr];
          require(pool.mainAddr == address(0));
          
          token.transfer(address(this), gno);
          
-         pool.mainAddr = msg.sender;
+         pool.ID = MinerPoolsAddresses.length;
+         MinerPoolsAddresses.push(mainAddr);
+         
+         pool.mainAddr = mainAddr;
+         pool.payer = msg.sender;
+         pool.subAddr = subAddr;
          pool.guaranteedNo = gno;
-         pool.viceAddr = va;
+         pool.poolType = 0;
+         pool.shortName = name;
+         pool.detailInfos = desc;
+         
     }
+    
+    function SetPoolType(address mainAddr, uint8 typ) public onlyOwner{
+        MinerPool storage pool = MinerPools[mainAddr];
+        require(pool.mainAddr != address(0));
+        pool.poolType = typ;
+    }
+    
+     function GetPoolSize() public view returns (uint){
+         return MinerPoolsAddresses.length;
+     }
+     
+     function GetPoolAddrees() public view returns (address[] memory){
+        return MinerPoolsAddresses;
+     }
     
     /********************************************************************************
     *                           Miner

@@ -14,6 +14,24 @@
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "mainAddr",
+				"type": "address"
+			},
+			{
+				"name": "typ",
+				"type": "uint8"
+			}
+		],
+		"name": "SetPoolType",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "PacketPrice",
@@ -56,12 +74,32 @@
 				"type": "address"
 			},
 			{
-				"name": "viceAddr",
+				"name": "payer",
+				"type": "address"
+			},
+			{
+				"name": "subAddr",
 				"type": "bytes32"
 			},
 			{
 				"name": "guaranteedNo",
 				"type": "uint256"
+			},
+			{
+				"name": "ID",
+				"type": "uint256"
+			},
+			{
+				"name": "poolType",
+				"type": "uint8"
+			},
+			{
+				"name": "shortName",
+				"type": "string"
+			},
+			{
+				"name": "detailInfos",
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -72,6 +110,20 @@
 		"constant": true,
 		"inputs": [],
 		"name": "DurationInDays",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "GetPoolSize",
 		"outputs": [
 			{
 				"name": "",
@@ -182,27 +234,28 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
 			{
-				"name": "gno",
-				"type": "uint256"
-			},
-			{
-				"name": "va",
-				"type": "bytes32"
+				"name": "",
+				"type": "address"
 			}
 		],
-		"name": "RegAsMinerPool",
-		"outputs": [],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "owner",
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "MinerPoolsAddresses",
 		"outputs": [
 			{
 				"name": "",
@@ -244,6 +297,50 @@
 			{
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "gno",
+				"type": "uint256"
+			},
+			{
+				"name": "mainAddr",
+				"type": "address"
+			},
+			{
+				"name": "subAddr",
+				"type": "bytes32"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "desc",
+				"type": "string"
+			}
+		],
+		"name": "RegAsMinerPool",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "GetPoolAddrees",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
 			}
 		],
 		"payable": false,
