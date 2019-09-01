@@ -100,22 +100,21 @@ contract MicroPaySystem is owned{
         require(gno > MinPoolCostInToken); 
         require(token.balanceOf(msg.sender) > gno); 
         
-         MinerPool storage pool = MinerPools[mainAddr];
-         require(pool.mainAddr == address(0));
+        MinerPool storage pool = MinerPools[mainAddr];
+        require(pool.mainAddr == address(0));
+        
+        token.transferFrom(msg.sender, address(this), gno);
+        
+        pool.ID = MinerPoolsAddresses.length;
+        MinerPoolsAddresses.push(mainAddr);
          
-         token.transfer(address(this), gno);
-         
-         pool.ID = MinerPoolsAddresses.length;
-         MinerPoolsAddresses.push(mainAddr);
-         
-         pool.mainAddr = mainAddr;
-         pool.payer = msg.sender;
-         pool.subAddr = subAddr;
-         pool.guaranteedNo = gno;
-         pool.poolType = 0;
-         pool.shortName = name;
-         pool.detailInfos = desc;
-         
+        pool.mainAddr = mainAddr;
+        pool.payer = msg.sender;
+        pool.subAddr = subAddr;
+        pool.guaranteedNo = gno;
+        pool.poolType = 0;
+        pool.shortName = name;
+        pool.detailInfos = desc;
     }
     
     function SetPoolType(address mainAddr, uint8 typ) public onlyOwner{
