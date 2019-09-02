@@ -31,7 +31,7 @@ contract MicroPaySystem is owned{
     uint public MinPoolCostInToken;
     uint public MinMinerCostInToken;
     uint public TokenDecimals;  
-    uint public DurationInDays = 30 days;
+    uint public Duration = 30 days;
     
     PangolinToken public token;
     
@@ -57,7 +57,7 @@ contract MicroPaySystem is owned{
     }
     
     function ChangeDuration(uint daysAfter) public onlyOwner{
-        DurationInDays = daysAfter * 1 days;
+        Duration = daysAfter * 1 days;
     }
     
     constructor(address ta) public{
@@ -86,7 +86,7 @@ contract MicroPaySystem is owned{
         Channel storage ch = MicroPaymentChannels[va][pool.mainAddr];
         ch.remindPackets += newPackets;
         ch.remindTokens += tokenNo;
-        ch.expiration = now + DurationInDays;
+        ch.expiration = now + Duration;
     }
     
     function TokenBalance(address userAddress) public view returns (uint, uint){
@@ -127,8 +127,23 @@ contract MicroPaySystem is owned{
          return MinerPoolsAddresses.length;
      }
      
-     function GetPoolAddrees() public view returns (address[] memory){
+     function GetPoolAddress() public view returns (address[] memory){
         return MinerPoolsAddresses;
+     }
+     
+     function ChangePoolSettings(address mainAddr, string memory name, string memory desc) public{
+       
+        MinerPool storage pool = MinerPools[mainAddr]; 
+        require(pool.mainAddr == msg.sender || pool.payer == msg.sender);
+        
+        if (bytes(name).length != 0){ 
+            pool.shortName = name;
+        }
+        
+        if (bytes(desc).length != 0){ 
+            pool.detailInfos = desc;
+        }
+        
      }
     
     /********************************************************************************

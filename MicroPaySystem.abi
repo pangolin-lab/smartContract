@@ -109,20 +109,6 @@
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "DurationInDays",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
 		"name": "GetPoolSize",
 		"outputs": [
 			{
@@ -142,6 +128,20 @@
 			{
 				"name": "",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "GetPoolAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address[]"
 			}
 		],
 		"payable": false,
@@ -248,6 +248,28 @@
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "mainAddr",
+				"type": "address"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "desc",
+				"type": "string"
+			}
+		],
+		"name": "ChangePoolSettings",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -336,11 +358,11 @@
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "GetPoolAddrees",
+		"name": "Duration",
 		"outputs": [
 			{
 				"name": "",
-				"type": "address[]"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
