@@ -7,18 +7,19 @@ import "./PangolinToken.sol";
 contract MicroPaySystem is owned{
     
     struct MinerPool{
+        uint32 ID;
+        uint8 poolType;
         address mainAddr;
         address payer;
         bytes32 subAddr;
         uint guaranteedNo;
-        uint ID;
-        uint8 poolType;
         string shortName;
         string detailInfos;
     }
     
     struct Channel{
-        address sigAddr;
+        address mainAddr;
+        address payerAddr;
         uint remindTokens;
         uint remindPackets;
         uint256 expiration;
@@ -27,7 +28,7 @@ contract MicroPaySystem is owned{
     using SafeMath for uint256; 
     
     uint public PacketPrice = 16000000;  //(16M Bytes)/ppnt /-->/1M = 1000 KB = 1,000,000 Bytes;
-    uint public MinUserCostInToken;
+
     uint public MinPoolCostInToken;
     uint public MinMinerCostInToken;
     uint public TokenDecimals;  
@@ -38,16 +39,17 @@ contract MicroPaySystem is owned{
     mapping(address=>MinerPool) public MinerPools;
     address[] public MinerPoolsAddresses;
     
-    mapping(bytes32=>mapping(address=>Channel)) public MicroPaymentChannels;
+    mapping(address=>mapping(address=>Channel)) public MicroPaymentChannels;
+    mapping(address=>address[])public allSubPools;
+
+    /********************************************************************************
+    *                           Basic
+    *********************************************************************************/
     
     function ChangeBandWithPrice(uint newPrice) public onlyOwner{
         PacketPrice = newPrice;
     } 
 
-    function ChangeMinUserCost(uint newCost) public onlyOwner{
-        MinUserCostInToken = newCost;
-    }
-    
     function ChangeMinPoolCost(uint newCost) public onlyOwner{
         MinPoolCostInToken = newCost;
     }
@@ -64,7 +66,6 @@ contract MicroPaySystem is owned{
         token = PangolinToken(ta);
         TokenDecimals = token.getDeccimal();
         
-        MinUserCostInToken = 100 * TokenDecimals;
         MinPoolCostInToken = 51200 * TokenDecimals;
         MinMinerCostInToken = 512 * TokenDecimals;
     }
@@ -72,25 +73,31 @@ contract MicroPaySystem is owned{
     /********************************************************************************
     *                           User
     *********************************************************************************/
-    function BuyPacket(bytes32 va, uint tokenNo, address poolAddr) public{
+    function BuyPacket(address user, uint tokenNo, address poolAddr) public{
         
-        require(tokenNo > MinUserCostInToken);
-        require(token.balanceOf(msg.sender) > tokenNo);
-        
+        require(token.balanceOf(msg.sender) > tokenNo); 
         MinerPool memory pool = MinerPools[poolAddr];
         require(pool.mainAddr != address(0));
         
-        token.transfer(address(this), tokenNo); 
+        token.transferFrom(msg.sender, address(this), tokenNo); 
         uint newPackets = tokenNo.div(TokenDecimals).mul(PacketPrice); 
         
-        Channel storage ch = MicroPaymentChannels[va][pool.mainAddr];
+        Channel storage ch = MicroPaymentChannels[user][pool.mainAddr];
+        ch.mainAddr = user;
+        ch.payerAddr = msg.sender;
         ch.remindPackets += newPackets;
         ch.remindTokens += tokenNo;
         ch.expiration = now + Duration;
+        
+        allSubPools[user].push(pool.mainAddr);
     }
     
     function TokenBalance(address userAddress) public view returns (uint, uint){
         return (token.balanceOf(userAddress), userAddress.balance);
+    }
+    
+    function AllMySubPools(address userAddress) public view returns (address[] memory){
+        return allSubPools[userAddress];
     }
     
     /********************************************************************************
@@ -105,7 +112,7 @@ contract MicroPaySystem is owned{
         
         token.transferFrom(msg.sender, address(this), gno);
         
-        pool.ID = MinerPoolsAddresses.length;
+        pool.ID = uint32(MinerPoolsAddresses.length);
         MinerPoolsAddresses.push(mainAddr);
          
         pool.mainAddr = mainAddr;
@@ -123,15 +130,15 @@ contract MicroPaySystem is owned{
         pool.poolType = typ;
     }
     
-     function GetPoolSize() public view returns (uint){
+    function GetPoolSize() public view returns (uint){
          return MinerPoolsAddresses.length;
-     }
+    }
      
-     function GetPoolAddress() public view returns (address[] memory){
+    function GetPoolAddress() public view returns (address[] memory){
         return MinerPoolsAddresses;
-     }
+    }
      
-     function ChangePoolSettings(address mainAddr, string memory name, string memory desc) public{
+    function ChangePoolSettings(address mainAddr, string memory name, string memory desc) public{
        
         MinerPool storage pool = MinerPools[mainAddr]; 
         require(pool.mainAddr == msg.sender || pool.payer == msg.sender);
@@ -143,8 +150,7 @@ contract MicroPaySystem is owned{
         if (bytes(desc).length != 0){ 
             pool.detailInfos = desc;
         }
-        
-     }
+    }
     
     /********************************************************************************
     *                           Miner

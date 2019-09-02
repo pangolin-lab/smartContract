@@ -70,6 +70,14 @@
 		"name": "MinerPools",
 		"outputs": [
 			{
+				"name": "ID",
+				"type": "uint32"
+			},
+			{
+				"name": "poolType",
+				"type": "uint8"
+			},
+			{
 				"name": "mainAddr",
 				"type": "address"
 			},
@@ -86,14 +94,6 @@
 				"type": "uint256"
 			},
 			{
-				"name": "ID",
-				"type": "uint256"
-			},
-			{
-				"name": "poolType",
-				"type": "uint8"
-			},
-			{
 				"name": "shortName",
 				"type": "string"
 			},
@@ -108,12 +108,17 @@
 	},
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "GetPoolSize",
+		"inputs": [
+			{
+				"name": "userAddress",
+				"type": "address"
+			}
+		],
+		"name": "AllMySubPools",
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256"
+				"type": "address[]"
 			}
 		],
 		"payable": false,
@@ -123,7 +128,7 @@
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "MinUserCostInToken",
+		"name": "GetPoolSize",
 		"outputs": [
 			{
 				"name": "",
@@ -163,11 +168,25 @@
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [],
+		"name": "MinMinerCostInToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{
-				"name": "va",
-				"type": "bytes32"
+				"name": "user",
+				"type": "address"
 			},
 			{
 				"name": "tokenNo",
@@ -186,24 +205,10 @@
 	},
 	{
 		"constant": true,
-		"inputs": [],
-		"name": "MinMinerCostInToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
 		"inputs": [
 			{
 				"name": "",
-				"type": "bytes32"
+				"type": "address"
 			},
 			{
 				"name": "",
@@ -213,7 +218,11 @@
 		"name": "MicroPaymentChannels",
 		"outputs": [
 			{
-				"name": "sigAddr",
+				"name": "mainAddr",
+				"type": "address"
+			},
+			{
+				"name": "payerAddr",
 				"type": "address"
 			},
 			{
@@ -227,6 +236,29 @@
 			{
 				"name": "expiration",
 				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "address"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "allSubPools",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
 			}
 		],
 		"payable": false,
@@ -367,20 +399,6 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "newCost",
-				"type": "uint256"
-			}
-		],
-		"name": "ChangeMinUserCost",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
