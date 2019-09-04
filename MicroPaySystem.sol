@@ -11,7 +11,6 @@ contract MicroPaySystem is owned{
         uint8 poolType;
         address mainAddr;
         address payer;
-        bytes32 subAddr;
         uint guaranteedNo;
         string shortName;
         string detailInfos;
@@ -104,7 +103,7 @@ contract MicroPaySystem is owned{
     /********************************************************************************
     *                           Pool
     *********************************************************************************/
-    function RegAsMinerPool(uint gno, address mainAddr,  bytes32 subAddr, string memory name, string memory desc) public {
+    function RegAsMinerPool(uint gno, address mainAddr, string memory name, string memory desc) public {
         require(gno > MinPoolCostInToken); 
         require(token.balanceOf(msg.sender) > gno); 
         
@@ -118,7 +117,6 @@ contract MicroPaySystem is owned{
          
         pool.mainAddr = mainAddr;
         pool.payer = msg.sender;
-        pool.subAddr = subAddr;
         pool.guaranteedNo = gno;
         pool.poolType = 0;
         pool.shortName = name;

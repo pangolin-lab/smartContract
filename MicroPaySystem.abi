@@ -86,10 +86,6 @@
 				"type": "address"
 			},
 			{
-				"name": "subAddr",
-				"type": "bytes32"
-			},
-			{
 				"name": "guaranteedNo",
 				"type": "uint256"
 			},
@@ -162,6 +158,32 @@
 			}
 		],
 		"name": "ChangeBandWithPrice",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "gno",
+				"type": "uint256"
+			},
+			{
+				"name": "mainAddr",
+				"type": "address"
+			},
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "desc",
+				"type": "string"
+			}
+		],
+		"name": "RegAsMinerPool",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -355,36 +377,6 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "gno",
-				"type": "uint256"
-			},
-			{
-				"name": "mainAddr",
-				"type": "address"
-			},
-			{
-				"name": "subAddr",
-				"type": "bytes32"
-			},
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "desc",
-				"type": "string"
-			}
-		],
-		"name": "RegAsMinerPool",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
