@@ -18,7 +18,6 @@ contract MicroPaySystem is owned{
     
     struct Channel{
         address mainAddr;
-        address payerAddr;
         uint remindTokens;
         uint remindPackets;
         uint256 expiration;
@@ -81,9 +80,8 @@ contract MicroPaySystem is owned{
         uint newPackets = tokenNo.div(TokenDecimals).mul(PacketPrice); 
         
         Channel storage ch = MicroPaymentChannels[user][pool.mainAddr];
-        if (ch.mainAddr != address(0)){
+        if (ch.mainAddr == address(0)){
             ch.mainAddr = user;
-            ch.payerAddr = msg.sender;
             allSubPools[user].push(pool.mainAddr);
         }
         

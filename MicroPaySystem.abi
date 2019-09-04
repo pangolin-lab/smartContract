@@ -244,10 +244,6 @@
 				"type": "address"
 			},
 			{
-				"name": "payerAddr",
-				"type": "address"
-			},
-			{
 				"name": "remindTokens",
 				"type": "uint256"
 			},
