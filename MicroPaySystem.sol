@@ -26,7 +26,6 @@ contract MicroPaySystem is owned{
     }
     
     using SafeMath for uint256; 
-    
     uint public PacketPrice = 16000000;  //(16M Bytes)/ppnt /-->/1M = 1000 KB = 1,000,000 Bytes;
 
     uint public MinPoolCostInToken;
@@ -83,13 +82,15 @@ contract MicroPaySystem is owned{
         uint newPackets = tokenNo.div(TokenDecimals).mul(PacketPrice); 
         
         Channel storage ch = MicroPaymentChannels[user][pool.mainAddr];
-        ch.mainAddr = user;
-        ch.payerAddr = msg.sender;
+        if (ch.mainAddr != address(0)){
+            ch.mainAddr = user;
+            ch.payerAddr = msg.sender;
+            allSubPools[user].push(pool.mainAddr);
+        }
+        
         ch.remindPackets += newPackets;
         ch.remindTokens += tokenNo;
         ch.expiration = now + Duration;
-        
-        allSubPools[user].push(pool.mainAddr);
     }
     
     function TokenBalance(address userAddress) public view returns (uint, uint){
