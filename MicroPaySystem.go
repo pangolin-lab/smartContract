@@ -28,7 +28,7 @@ var (
 )
 
 // MicroPaySystemABI is the input ABI used to generate the binding from.
-const MicroPaySystemABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"TokenDecimals\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"typ\",\"type\":\"uint8\"}],\"name\":\"SetPoolType\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"PacketPrice\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"daysAfter\",\"type\":\"uint256\"}],\"name\":\"ChangeDuration\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"MinerPools\",\"outputs\":[{\"name\":\"ID\",\"type\":\"uint32\"},{\"name\":\"poolType\",\"type\":\"uint8\"},{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"payer\",\"type\":\"address\"},{\"name\":\"guaranteedNo\",\"type\":\"uint256\"},{\"name\":\"shortName\",\"type\":\"string\"},{\"name\":\"detailInfos\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"AllMySubPools\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"GetPoolSize\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"GetPoolAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newPrice\",\"type\":\"uint256\"}],\"name\":\"ChangeBandWithPrice\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"gno\",\"type\":\"uint256\"},{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"desc\",\"type\":\"string\"}],\"name\":\"RegAsMinerPool\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinMinerCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"},{\"name\":\"tokenNo\",\"type\":\"uint256\"},{\"name\":\"poolAddr\",\"type\":\"address\"}],\"name\":\"BuyPacket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"address\"}],\"name\":\"MicroPaymentChannels\",\"outputs\":[{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"remindTokens\",\"type\":\"uint256\"},{\"name\":\"remindPackets\",\"type\":\"uint256\"},{\"name\":\"expiration\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"allSubPools\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"desc\",\"type\":\"string\"}],\"name\":\"ChangePoolSettings\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"MinerPoolsAddresses\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinPoolCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"TokenBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"Duration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinPoolCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinMinerCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"ta\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]"
+const MicroPaySystemABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"TokenDecimals\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"PacketPrice\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"daysAfter\",\"type\":\"uint256\"}],\"name\":\"ChangeDuration\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"}],\"name\":\"MinerPools\",\"outputs\":[{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"payer\",\"type\":\"address\"},{\"name\":\"guaranteedNo\",\"type\":\"uint256\"},{\"name\":\"shortName\",\"type\":\"string\"},{\"name\":\"detailInfos\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"AllMySubPools\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"GetPoolAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newPrice\",\"type\":\"uint256\"}],\"name\":\"ChangeBandWithPrice\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"gno\",\"type\":\"uint256\"},{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"desc\",\"type\":\"string\"}],\"name\":\"RegAsMinerPool\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinMinerCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"user\",\"type\":\"address\"},{\"name\":\"tokenNo\",\"type\":\"uint256\"},{\"name\":\"poolAddr\",\"type\":\"address\"}],\"name\":\"BuyPacket\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"address\"}],\"name\":\"MicroPaymentChannels\",\"outputs\":[{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"remindTokens\",\"type\":\"uint256\"},{\"name\":\"remindPackets\",\"type\":\"uint256\"},{\"name\":\"expiration\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"address\"},{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"allSubPools\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"mainAddr\",\"type\":\"address\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"desc\",\"type\":\"string\"}],\"name\":\"ChangePoolSettings\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"MinerPoolsAddresses\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinPoolCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"TokenBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"Duration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"MinPoolCostInToken\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"token\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"newCost\",\"type\":\"uint256\"}],\"name\":\"ChangeMinMinerCost\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"name\":\"ta\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]"
 
 // MicroPaySystem is an auto generated Go binding around an Ethereum contract.
 type MicroPaySystem struct {
@@ -250,32 +250,6 @@ func (_MicroPaySystem *MicroPaySystemCallerSession) GetPoolAddress() ([]common.A
 	return _MicroPaySystem.Contract.GetPoolAddress(&_MicroPaySystem.CallOpts)
 }
 
-// GetPoolSize is a free data retrieval call binding the contract method 0x38339ea1.
-//
-// Solidity: function GetPoolSize() constant returns(uint256)
-func (_MicroPaySystem *MicroPaySystemCaller) GetPoolSize(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _MicroPaySystem.contract.Call(opts, out, "GetPoolSize")
-	return *ret0, err
-}
-
-// GetPoolSize is a free data retrieval call binding the contract method 0x38339ea1.
-//
-// Solidity: function GetPoolSize() constant returns(uint256)
-func (_MicroPaySystem *MicroPaySystemSession) GetPoolSize() (*big.Int, error) {
-	return _MicroPaySystem.Contract.GetPoolSize(&_MicroPaySystem.CallOpts)
-}
-
-// GetPoolSize is a free data retrieval call binding the contract method 0x38339ea1.
-//
-// Solidity: function GetPoolSize() constant returns(uint256)
-func (_MicroPaySystem *MicroPaySystemCallerSession) GetPoolSize() (*big.Int, error) {
-	return _MicroPaySystem.Contract.GetPoolSize(&_MicroPaySystem.CallOpts)
-}
-
 // MicroPaymentChannels is a free data retrieval call binding the contract method 0x53488ab7.
 //
 // Solidity: function MicroPaymentChannels(address , address ) constant returns(address mainAddr, uint256 remindTokens, uint256 remindPackets, uint256 expiration)
@@ -374,10 +348,8 @@ func (_MicroPaySystem *MicroPaySystemCallerSession) MinPoolCostInToken() (*big.I
 
 // MinerPools is a free data retrieval call binding the contract method 0x291c3a5c.
 //
-// Solidity: function MinerPools(address ) constant returns(uint32 ID, uint8 poolType, address mainAddr, address payer, uint256 guaranteedNo, string shortName, string detailInfos)
+// Solidity: function MinerPools(address ) constant returns(address mainAddr, address payer, uint256 guaranteedNo, string shortName, string detailInfos)
 func (_MicroPaySystem *MicroPaySystemCaller) MinerPools(opts *bind.CallOpts, arg0 common.Address) (struct {
-	ID           uint32
-	PoolType     uint8
 	MainAddr     common.Address
 	Payer        common.Address
 	GuaranteedNo *big.Int
@@ -385,8 +357,6 @@ func (_MicroPaySystem *MicroPaySystemCaller) MinerPools(opts *bind.CallOpts, arg
 	DetailInfos  string
 }, error) {
 	ret := new(struct {
-		ID           uint32
-		PoolType     uint8
 		MainAddr     common.Address
 		Payer        common.Address
 		GuaranteedNo *big.Int
@@ -400,10 +370,8 @@ func (_MicroPaySystem *MicroPaySystemCaller) MinerPools(opts *bind.CallOpts, arg
 
 // MinerPools is a free data retrieval call binding the contract method 0x291c3a5c.
 //
-// Solidity: function MinerPools(address ) constant returns(uint32 ID, uint8 poolType, address mainAddr, address payer, uint256 guaranteedNo, string shortName, string detailInfos)
+// Solidity: function MinerPools(address ) constant returns(address mainAddr, address payer, uint256 guaranteedNo, string shortName, string detailInfos)
 func (_MicroPaySystem *MicroPaySystemSession) MinerPools(arg0 common.Address) (struct {
-	ID           uint32
-	PoolType     uint8
 	MainAddr     common.Address
 	Payer        common.Address
 	GuaranteedNo *big.Int
@@ -415,10 +383,8 @@ func (_MicroPaySystem *MicroPaySystemSession) MinerPools(arg0 common.Address) (s
 
 // MinerPools is a free data retrieval call binding the contract method 0x291c3a5c.
 //
-// Solidity: function MinerPools(address ) constant returns(uint32 ID, uint8 poolType, address mainAddr, address payer, uint256 guaranteedNo, string shortName, string detailInfos)
+// Solidity: function MinerPools(address ) constant returns(address mainAddr, address payer, uint256 guaranteedNo, string shortName, string detailInfos)
 func (_MicroPaySystem *MicroPaySystemCallerSession) MinerPools(arg0 common.Address) (struct {
-	ID           uint32
-	PoolType     uint8
 	MainAddr     common.Address
 	Payer        common.Address
 	GuaranteedNo *big.Int
@@ -759,27 +725,6 @@ func (_MicroPaySystem *MicroPaySystemSession) RegAsMinerPool(gno *big.Int, mainA
 // Solidity: function RegAsMinerPool(uint256 gno, address mainAddr, string name, string desc) returns()
 func (_MicroPaySystem *MicroPaySystemTransactorSession) RegAsMinerPool(gno *big.Int, mainAddr common.Address, name string, desc string) (*types.Transaction, error) {
 	return _MicroPaySystem.Contract.RegAsMinerPool(&_MicroPaySystem.TransactOpts, gno, mainAddr, name, desc)
-}
-
-// SetPoolType is a paid mutator transaction binding the contract method 0x0ff45f38.
-//
-// Solidity: function SetPoolType(address mainAddr, uint8 typ) returns()
-func (_MicroPaySystem *MicroPaySystemTransactor) SetPoolType(opts *bind.TransactOpts, mainAddr common.Address, typ uint8) (*types.Transaction, error) {
-	return _MicroPaySystem.contract.Transact(opts, "SetPoolType", mainAddr, typ)
-}
-
-// SetPoolType is a paid mutator transaction binding the contract method 0x0ff45f38.
-//
-// Solidity: function SetPoolType(address mainAddr, uint8 typ) returns()
-func (_MicroPaySystem *MicroPaySystemSession) SetPoolType(mainAddr common.Address, typ uint8) (*types.Transaction, error) {
-	return _MicroPaySystem.Contract.SetPoolType(&_MicroPaySystem.TransactOpts, mainAddr, typ)
-}
-
-// SetPoolType is a paid mutator transaction binding the contract method 0x0ff45f38.
-//
-// Solidity: function SetPoolType(address mainAddr, uint8 typ) returns()
-func (_MicroPaySystem *MicroPaySystemTransactorSession) SetPoolType(mainAddr common.Address, typ uint8) (*types.Transaction, error) {
-	return _MicroPaySystem.Contract.SetPoolType(&_MicroPaySystem.TransactOpts, mainAddr, typ)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.

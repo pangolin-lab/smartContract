@@ -14,24 +14,6 @@
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "mainAddr",
-				"type": "address"
-			},
-			{
-				"name": "typ",
-				"type": "uint8"
-			}
-		],
-		"name": "SetPoolType",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"constant": true,
 		"inputs": [],
 		"name": "PacketPrice",
@@ -70,14 +52,6 @@
 		"name": "MinerPools",
 		"outputs": [
 			{
-				"name": "ID",
-				"type": "uint32"
-			},
-			{
-				"name": "poolType",
-				"type": "uint8"
-			},
-			{
 				"name": "mainAddr",
 				"type": "address"
 			},
@@ -115,20 +89,6 @@
 			{
 				"name": "",
 				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "GetPoolSize",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"payable": false,

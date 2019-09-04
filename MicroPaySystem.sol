@@ -7,11 +7,9 @@ import "./PangolinToken.sol";
 contract MicroPaySystem is owned{
     
     struct MinerPool{
-        uint32 ID;
-        uint8 poolType;
         address mainAddr;
         address payer;
-        uint guaranteedNo;
+        uint    guaranteedNo;
         string shortName;
         string detailInfos;
     }
@@ -110,27 +108,15 @@ contract MicroPaySystem is owned{
         
         token.transferFrom(msg.sender, address(this), gno);
         
-        pool.ID = uint32(MinerPoolsAddresses.length);
         MinerPoolsAddresses.push(mainAddr);
          
         pool.mainAddr = mainAddr;
         pool.payer = msg.sender;
         pool.guaranteedNo = gno;
-        pool.poolType = 0;
         pool.shortName = name;
         pool.detailInfos = desc;
     }
     
-    function SetPoolType(address mainAddr, uint8 typ) public onlyOwner{
-        MinerPool storage pool = MinerPools[mainAddr];
-        require(pool.mainAddr != address(0));
-        pool.poolType = typ;
-    }
-    
-    function GetPoolSize() public view returns (uint){
-         return MinerPoolsAddresses.length;
-    }
-     
     function GetPoolAddress() public view returns (address[] memory){
         return MinerPoolsAddresses;
     }
