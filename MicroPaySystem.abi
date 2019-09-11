@@ -5,6 +5,7 @@
 		"name": "TokenDecimals",
 		"outputs": [
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -19,6 +20,7 @@
 		"name": "PacketPrice",
 		"outputs": [
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -31,6 +33,7 @@
 		"constant": false,
 		"inputs": [
 			{
+				"internalType": "uint256",
 				"name": "daysAfter",
 				"type": "uint256"
 			}
@@ -42,104 +45,31 @@
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "MinerPools",
-		"outputs": [
-			{
-				"name": "mainAddr",
-				"type": "address"
-			},
-			{
-				"name": "payer",
-				"type": "address"
-			},
-			{
-				"name": "guaranteedNo",
-				"type": "uint256"
-			},
-			{
-				"name": "shortName",
-				"type": "string"
-			},
-			{
-				"name": "detailInfos",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "userAddress",
-				"type": "address"
-			}
-		],
-		"name": "AllMySubPools",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "GetPoolAddress",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [
 			{
-				"name": "newPrice",
-				"type": "uint256"
-			}
-		],
-		"name": "ChangeBandWithPrice",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
+				"internalType": "uint256",
 				"name": "gno",
 				"type": "uint256"
 			},
 			{
+				"internalType": "address",
 				"name": "mainAddr",
 				"type": "address"
 			},
 			{
+				"internalType": "string",
 				"name": "name",
 				"type": "string"
 			},
 			{
+				"internalType": "string",
 				"name": "desc",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "seeds",
 				"type": "string"
 			}
 		],
@@ -151,10 +81,128 @@
 	},
 	{
 		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "MinerPools",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "mainAddr",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "payer",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "guaranteedNo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "shortName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "detailInfos",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "seeds",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "userAddress",
+				"type": "address"
+			}
+		],
+		"name": "AllMySubPools",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "mainAddr",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"name": "ChangeShortName",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "GetPoolAddress",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newPrice",
+				"type": "uint256"
+			}
+		],
+		"name": "ChangeBandWithPrice",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
 		"inputs": [],
 		"name": "MinMinerCostInToken",
 		"outputs": [
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -167,14 +215,17 @@
 		"constant": false,
 		"inputs": [
 			{
+				"internalType": "address",
 				"name": "user",
 				"type": "address"
 			},
 			{
+				"internalType": "uint256",
 				"name": "tokenNo",
 				"type": "uint256"
 			},
 			{
+				"internalType": "address",
 				"name": "poolAddr",
 				"type": "address"
 			}
@@ -189,10 +240,12 @@
 		"constant": true,
 		"inputs": [
 			{
+				"internalType": "address",
 				"name": "",
 				"type": "address"
 			},
 			{
+				"internalType": "address",
 				"name": "",
 				"type": "address"
 			}
@@ -200,18 +253,22 @@
 		"name": "MicroPaymentChannels",
 		"outputs": [
 			{
+				"internalType": "address",
 				"name": "mainAddr",
 				"type": "address"
 			},
 			{
+				"internalType": "uint256",
 				"name": "remindTokens",
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
 				"name": "remindPackets",
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
 				"name": "expiration",
 				"type": "uint256"
 			}
@@ -224,10 +281,12 @@
 		"constant": true,
 		"inputs": [
 			{
+				"internalType": "address",
 				"name": "",
 				"type": "address"
 			},
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -235,20 +294,7 @@
 		"name": "allSubPools",
 		"outputs": [
 			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
+				"internalType": "address",
 				"name": "",
 				"type": "address"
 			}
@@ -261,19 +307,52 @@
 		"constant": false,
 		"inputs": [
 			{
+				"internalType": "address",
 				"name": "mainAddr",
 				"type": "address"
 			},
 			{
-				"name": "name",
+				"internalType": "string",
+				"name": "seeds",
 				"type": "string"
+			}
+		],
+		"name": "ChangeSeed",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "mainAddr",
+				"type": "address"
 			},
 			{
+				"internalType": "string",
 				"name": "desc",
 				"type": "string"
 			}
 		],
-		"name": "ChangePoolSettings",
+		"name": "ChangeDesc",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -283,6 +362,7 @@
 		"constant": true,
 		"inputs": [
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -290,6 +370,7 @@
 		"name": "MinerPoolsAddresses",
 		"outputs": [
 			{
+				"internalType": "address",
 				"name": "",
 				"type": "address"
 			}
@@ -302,6 +383,7 @@
 		"constant": false,
 		"inputs": [
 			{
+				"internalType": "uint256",
 				"name": "newCost",
 				"type": "uint256"
 			}
@@ -316,6 +398,7 @@
 		"constant": true,
 		"inputs": [
 			{
+				"internalType": "address",
 				"name": "userAddress",
 				"type": "address"
 			}
@@ -323,10 +406,12 @@
 		"name": "TokenBalance",
 		"outputs": [
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			},
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -341,6 +426,7 @@
 		"name": "Duration",
 		"outputs": [
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -353,6 +439,7 @@
 		"constant": false,
 		"inputs": [
 			{
+				"internalType": "address",
 				"name": "newOwner",
 				"type": "address"
 			}
@@ -369,6 +456,7 @@
 		"name": "MinPoolCostInToken",
 		"outputs": [
 			{
+				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
 			}
@@ -383,6 +471,7 @@
 		"name": "token",
 		"outputs": [
 			{
+				"internalType": "contract PangolinToken",
 				"name": "",
 				"type": "address"
 			}
@@ -395,6 +484,7 @@
 		"constant": false,
 		"inputs": [
 			{
+				"internalType": "uint256",
 				"name": "newCost",
 				"type": "uint256"
 			}
@@ -408,6 +498,7 @@
 	{
 		"inputs": [
 			{
+				"internalType": "address",
 				"name": "ta",
 				"type": "address"
 			}

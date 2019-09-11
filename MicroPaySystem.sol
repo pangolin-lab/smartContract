@@ -12,6 +12,7 @@ contract MicroPaySystem is owned{
         uint    guaranteedNo;
         string shortName;
         string detailInfos;
+        string seeds;
     }
     
     struct Channel{
@@ -99,7 +100,7 @@ contract MicroPaySystem is owned{
     /********************************************************************************
     *                           Pool
     *********************************************************************************/
-    function RegAsMinerPool(uint gno, address mainAddr, string memory name, string memory desc) public {
+    function RegAsMinerPool(uint gno, address mainAddr, string memory name, string memory desc, string memory seeds) public {
         require(gno > MinPoolCostInToken); 
         require(token.balanceOf(msg.sender) > gno); 
         
@@ -115,24 +116,30 @@ contract MicroPaySystem is owned{
         pool.guaranteedNo = gno;
         pool.shortName = name;
         pool.detailInfos = desc;
+        pool.seeds = seeds;
     }
     
     function GetPoolAddress() public view returns (address[] memory){
         return MinerPoolsAddresses;
     }
      
-    function ChangePoolSettings(address mainAddr, string memory name, string memory desc) public{
+    function ChangeShortName(address mainAddr, string memory name) public{
        
         MinerPool storage pool = MinerPools[mainAddr]; 
+        require(pool.mainAddr == msg.sender || pool.payer == msg.sender); 
+        pool.shortName = name;
+    }
+    
+    function ChangeDesc(address mainAddr, string memory desc) public{
+        MinerPool storage pool = MinerPools[mainAddr]; 
         require(pool.mainAddr == msg.sender || pool.payer == msg.sender);
-        
-        if (bytes(name).length != 0){ 
-            pool.shortName = name;
-        }
-        
-        if (bytes(desc).length != 0){ 
-            pool.detailInfos = desc;
-        }
+        pool.detailInfos = desc;
+    }
+    
+    function ChangeSeed(address mainAddr, string memory seeds) public{
+        MinerPool storage pool = MinerPools[mainAddr]; 
+        require(pool.mainAddr == msg.sender || pool.payer == msg.sender);
+        pool.seeds = seeds;
     }
     
     /********************************************************************************
