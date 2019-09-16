@@ -31,7 +31,7 @@ contract MicroPaySystem is owned{
     uint public Duration = 30 days;
     
     PangolinToken public token;
-    
+    uint32 public MinerPoolVersion;
     mapping(address=>MinerPool) public MinerPools;
     address[] public MinerPoolsAddresses;
     
@@ -117,6 +117,7 @@ contract MicroPaySystem is owned{
         pool.shortName = name;
         pool.detailInfos = desc;
         pool.seeds = seeds;
+        MinerPoolVersion += 1;
     }
     
     function GetPoolAddress() public view returns (address[] memory){

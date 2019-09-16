@@ -17,6 +17,21 @@
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "MinerPoolVersion",
+		"outputs": [
+			{
+				"internalType": "uint32",
+				"name": "",
+				"type": "uint32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "PacketPrice",
 		"outputs": [
 			{
