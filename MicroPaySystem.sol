@@ -89,8 +89,8 @@ contract MicroPaySystem is owned{
         ch.expiration = now + Duration;
     }
     
-    function TokenBalance(address userAddress) public view returns (uint, uint){
-        return (token.balanceOf(userAddress), userAddress.balance);
+    function TokenBalance(address userAddress) public view returns (uint, uint, uint){
+        return (token.balanceOf(userAddress), userAddress.balance, token.allowance(userAddress, address(this)));
     }
     
     function AllMySubPools(address userAddress) public view returns (address[] memory){
