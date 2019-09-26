@@ -319,6 +319,27 @@
 		"type": "function"
 	},
 	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "ChannelVersion",
+		"outputs": [
+			{
+				"internalType": "uint32",
+				"name": "",
+				"type": "uint32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": false,
 		"inputs": [
 			{

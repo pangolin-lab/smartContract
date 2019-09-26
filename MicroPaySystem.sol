@@ -32,6 +32,7 @@ contract MicroPaySystem is owned{
     
     PangolinToken public token;
     uint32 public MinerPoolVersion;
+    mapping(address =>uint32) public ChannelVersion;
     mapping(address=>MinerPool) public MinerPools;
     address[] public MinerPoolsAddresses;
     
