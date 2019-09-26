@@ -33,6 +33,7 @@ contract MicroPaySystem is owned{
     PangolinToken public token;
     uint32 public MinerPoolVersion;
     mapping(address =>uint32) public ChannelVersion;
+    
     mapping(address=>MinerPool) public MinerPools;
     address[] public MinerPoolsAddresses;
     
@@ -88,6 +89,8 @@ contract MicroPaySystem is owned{
         ch.remindPackets += newPackets;
         ch.remindTokens += tokenNo;
         ch.expiration = now + Duration;
+        
+        ChannelVersion[user] += 1;
     }
     
     function TokenBalance(address userAddress) public view returns (uint, uint, uint){
@@ -129,19 +132,22 @@ contract MicroPaySystem is owned{
        
         MinerPool storage pool = MinerPools[mainAddr]; 
         require(pool.mainAddr == msg.sender || pool.payer == msg.sender); 
-        pool.shortName = name;
+        pool.shortName = name; 
+        MinerPoolVersion += 1;
     }
     
     function ChangeDesc(address mainAddr, string memory desc) public{
         MinerPool storage pool = MinerPools[mainAddr]; 
         require(pool.mainAddr == msg.sender || pool.payer == msg.sender);
         pool.detailInfos = desc;
+        MinerPoolVersion += 1;
     }
     
     function ChangeSeed(address mainAddr, string memory seeds) public{
         MinerPool storage pool = MinerPools[mainAddr]; 
         require(pool.mainAddr == msg.sender || pool.payer == msg.sender);
         pool.seeds = seeds;
+        MinerPoolVersion += 1;
     }
     
     /********************************************************************************
