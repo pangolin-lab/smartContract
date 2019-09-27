@@ -17,7 +17,6 @@ contract MicroPaySystem is owned{
     
     struct Channel{
         address mainAddr;
-        uint remindTokens;
         uint remindPackets;
         uint256 expiration;
     }
@@ -87,7 +86,6 @@ contract MicroPaySystem is owned{
         }
         
         ch.remindPackets += newPackets;
-        ch.remindTokens += tokenNo;
         ch.expiration = now + Duration;
         
         ChannelVersion[user] += 1;
